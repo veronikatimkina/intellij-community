@@ -58,6 +58,13 @@ internal fun KtAnalysisSession.toPsiMethod(functionSymbol: KtFunctionLikeSymbol)
         null -> null
         is PsiMethod -> psi
         is KtClassOrObject -> {
+            // For synthetic members in enum classes, `psi` points to their containing enum class.
+            if (psi is KtClass && psi.isEnum()) {
+                val lc = psi.toLightClass() ?: return null
+                lc.methods.find { it.name == functionSymbol.callableIdIfNonLocal?.callableName?.identifier }?.let { return it }
+            }
+
+            // Default primary constructor
             psi.primaryConstructor?.getRepresentativeLightMethod()?.let { return it }
             val lc = psi.toLightClass() ?: return null
             lc.constructors.firstOrNull()?.let { return it }
