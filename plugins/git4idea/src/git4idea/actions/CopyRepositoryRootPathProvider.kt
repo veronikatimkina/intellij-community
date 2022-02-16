@@ -8,6 +8,7 @@ import com.intellij.openapi.vcs.ProjectLevelVcsManager
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
 
+//changes from sparse repo
 class CopyPathFromRepositoryRootProvider : DumbAwareCopyPathProvider() {
   override fun getPathToElement(project: Project, virtualFile: VirtualFile?, editor: Editor?): String? {
     if (virtualFile == null) return null
