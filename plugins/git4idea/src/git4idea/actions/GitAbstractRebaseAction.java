@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static git4idea.GitUtil.getRepositoryManager;
 
+//changes from firstbr
 public abstract class GitAbstractRebaseAction extends GitOperationActionBase {
   protected GitAbstractRebaseAction() {
     super(Repository.State.REBASING);
